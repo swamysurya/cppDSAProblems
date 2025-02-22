@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+// function to find the index to insert the target
 int findIndexAndInsert(int arr[], int n, int target){
     int low = 0;
     int high = n-1;
@@ -23,5 +23,6 @@ int main(){
     const int n = 4;
     int target = 7;
     int arr[] = {4,5,6,9};
+    // this is nothing but calculating the lower bound of the target
     cout << "index to insert postion" << findIndexAndInsert(arr,n,target) << endl;
 }
