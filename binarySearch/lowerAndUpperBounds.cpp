@@ -32,7 +32,7 @@ int lower_bound_builtIn(vector<int>& arr, int x) {
             low = mid + 1;
         }
     }
-    return ans;
+    return ans; // Index where the first element >= x is found
 }
 
 
