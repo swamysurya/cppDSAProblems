@@ -24,7 +24,7 @@ int binarySearch(int arr[], int n, int target){
     while (low <= high){
         // int mid = (low + high)/2 ;
         // to avoid overflow we can modify the calculation of mid
-        int mid = low + (high - low) / 2; 
+        int mid = low + (high - low) / 2; // this for contrtol overflow
         if (arr[mid] == target){
             return mid;
         }else if (arr[mid] > target){
