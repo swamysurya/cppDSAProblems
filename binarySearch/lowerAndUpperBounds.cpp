@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 // implementation of upper bound in c++ using binary search
@@ -8,11 +9,11 @@ int upper_bound_builtIn(vector<int>& arr, int x) {
     int ans = arr.size();
     while (low <= high) {
         int mid = low + (high - low) / 2;
-        if (arr[mid] <= x){
-            low = mid + 1;
-        }else{
+        if (arr[mid] > x){
             ans = mid;
             high = mid - 1;
+        }else{
+            low = mid + 1;
         }
     }
     return ans;  // Index where the first element > x is found
@@ -27,9 +28,9 @@ int lower_bound_builtIn(vector<int>& arr, int x) {
         int mid = low + (high - low) / 2;
         if (arr[mid] >= x){
             ans = mid;
-            high = mid - 1;
+            high = mid - 1;  
         }else{
-            low = mid + 1;
+             low = mid + 1;
         }
     }
     return ans; // Index where the first element >= x is found

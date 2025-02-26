@@ -68,3 +68,31 @@ Your task is to determine the **minimum** number of left rotations needed to bri
 
 - 2 right rotations: `[4, 5, 1, 2, 3]`
 - 3 left rotations: `[4, 5, 1, 2, 3]` (same as above, so only left rotations needed)
+
+## Comparison of Functionality
+
+### lowerAndUpperBounds.cpp
+
+- **Purpose**: Implements functions to find the **lower bound** and **upper bound** of a target value in a sorted array.
+  - **Lower Bound**: The index of the first element that is **greater than or equal to** the target.
+  - **Upper Bound**: The index of the first element that is **greater than** the target.
+
+### ceilTheFloor.cpp
+
+- **Purpose**: Implements functions to find the **ceiling** and **floor** of a target value in a sorted array.
+  - **Ceiling**: The smallest element that is **greater than or equal to** the target.
+  - **Floor**: The largest element that is **less than or equal to** the target.
+
+### Key Differences
+
+1. **Implementation**: Both files use binary search, but they serve different purposes and return different types of results (indices vs. values).
+2. **Return Values**:
+   - Functions in [lowerAndUpperBounds.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/lowerAndUpperBounds.cpp:0:0-0:0) return indices.
+   - Functions in [ceilTheFloor.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/ceilTheFloor.cpp:0:0-0:0) return actual values from the array.
+
+### Summary
+
+While both files utilize binary search techniques and deal with sorted arrays, they focus on different aspects of searching:
+
+- [lowerAndUpperBounds.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/lowerAndUpperBounds.cpp:0:0-0:0) is concerned with finding indices (bounds).
+- [ceilTheFloor.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/ceilTheFloor.cpp:0:0-0:0) is focused on finding the actual values (ceiling and floor).

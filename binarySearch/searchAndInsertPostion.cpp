@@ -11,9 +11,9 @@ int findIndexAndInsert(int arr[], int n, int target){
         mid = low + (high - low)/2;
         if (arr[mid] >= target){
             index = mid;
-            low = mid - 1;
+            high = mid - 1;
         }else{
-            high = mid + 1;
+            low = mid + 1;
         }
     }
     return index;
@@ -24,5 +24,5 @@ int main(){
     int target = 7;
     int arr[] = {4,5,6,9};
     // this is nothing but calculating the lower bound of the target
-    cout << "index to insert postion" << findIndexAndInsert(arr,n,target) << endl;
+    cout << "index to insert postion " << findIndexAndInsert(arr,n,target) << endl;
 }
