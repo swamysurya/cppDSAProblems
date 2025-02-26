@@ -4,7 +4,7 @@ using namespace std;
 int findIndexAndInsert(int arr[], int n, int target){
     int low = 0;
     int high = n-1;
-    int index = -1;
+    int index = n;
     int mid;
     
     while(low <= high){
