@@ -63,6 +63,7 @@ int main() {
 
     // 12. Using algorithms
     sort(vec3.begin(), vec3.end()); // Sort the vector
+    // sort the vector in reverse ordere
     reverse(vec3.begin(), vec3.end()); // Reverse the vector
 
     //check vec1 is empty or not
@@ -77,6 +78,15 @@ int main() {
         cout << i << " ";
     }
     cout << endl;
+
+    //concat two vectors
+    vec1.insert(vec1.end(), vec2.begin(), vec2.end());
+    cout << "Concatenated vec1 and vec2: ";
+    for (int i : vec1) {
+        cout << i << " ";
+    }
+    cout << endl;
+
 
     return 0;
 }
