@@ -85,6 +85,16 @@ vector<int> firstAndLastPositionOptimal(vector<int> &arr, int target) {
     return {first, last};
 }
 
+// by using lower bound concept we can also find the first and last position in O(log n) time complexity
+vector<int> firstAndLastPositionUsingLowerBound(vector<int> &arr, int target) {
+    int first = lower_bound_builtIn(arr, target);
+    int last = lower_bound_builtIn(arr, target+1) - 1;
+    if (first < arr.size() && arr[first] == target) {
+        return {first, last};
+    }
+    return {-1, -1};
+}
+
 // int main() {
 //     vector<int> arr = {5, 7, 7, 8, 8, 10};
 //     int target = 8;
