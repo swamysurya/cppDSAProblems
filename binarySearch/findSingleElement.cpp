@@ -18,8 +18,10 @@ int findSingleElement(vector<int> arr, int n){
         else high = mid - 1;
     }
     return -1;
-
 }
+
+// time complexity O(log n)
+// space complexity O(1)
 
 // this will work if no ubique elemetns are there
 int findSingleElement2(vector<int> arr, int n){
@@ -53,6 +55,8 @@ int findSingleElement2(vector<int> arr, int n){
     return -1;  // No single element found
 }
 
+// time complexity O(log n)
+// space complexity O(1)
 
 
 int main(){
