@@ -40,7 +40,7 @@ int floorOfTarget(int arr[], int n, int target) {
     }
     return ans; // Return the floor value
 }
-
+    
 // Main function to demonstrate the ceiling and floor functionalities
 int main() {
     const int n = 5; // Size of the array
