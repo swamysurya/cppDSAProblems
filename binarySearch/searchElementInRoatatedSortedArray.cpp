@@ -21,7 +21,7 @@ int findElementInRoatedSortedArray(vector<int> arr, int n, int target){
             if(arr[low] <= target && target <= arr[mid]){
                 high = mid - 1;
             // of find the right space
-            }else{
+            }else{     
                 low = mid + 1;
             }
         // the if states the right space is sorted one
