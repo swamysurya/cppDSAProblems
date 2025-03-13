@@ -10,7 +10,7 @@ void printArray(vector<int> &v){
 }
 
 void printSubsequence(vector<int> &v, int arr[], int index, int n){
-   if (index >= n){
+   if (index >= n){+
         printArray(v);
         return;
    }

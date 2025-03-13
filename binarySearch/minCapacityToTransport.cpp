@@ -15,7 +15,7 @@ bool isItMinCapacityToTransportAllParcels(vector <int> arr, int n, int minCapaci
             countDays+= 1;
             weight = arr[i];
         }else{
-            // ohtherwise we keep on adding the weights
+            // otherwise we keep on adding the weights
             weight += arr[i];
         }
     }
