@@ -30,7 +30,7 @@ int minCapacityToTransport(vector <int> arr, int n, int days){
     int low = *min_element(arr.begin(),arr.end()); // time complexcity = O(n)
     int mid;
     //If we had just one day (D = 1), we would need to ship all packages at once.
-    int high = accumulate(arr.begin(),arr.end(),0); // time complexcity = O(n)
+        ; // time complexcity = O(n)
     int ans = high;
     while (low <= high){
         mid = low + (high - low)/2;
