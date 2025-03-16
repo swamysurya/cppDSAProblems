@@ -46,5 +46,4 @@ int main(){
 // space used by the input = O(n)
 
 
-// LeetCode Problem #560.
 
