@@ -96,3 +96,7 @@ While both files utilize binary search techniques and deal with sorted arrays, t
 
 - [lowerAndUpperBounds.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/lowerAndUpperBounds.cpp:0:0-0:0) is concerned with finding indices (bounds).
 - [ceilTheFloor.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/ceilTheFloor.cpp:0:0-0:0) is focused on finding the actual values (ceiling and floor).
+
+Subsequences → Keep order, but elements can be skipped.
+Subarrays → Contiguous portion of the array, order matters.
+Subsets → Any combination of elements, order doesn’t matter.
