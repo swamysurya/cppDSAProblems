@@ -20,7 +20,7 @@ bool cowsCanPlace(vector<int> arr, int n, int c, int distance){
 }
 
 int minimumDistanceBruteForce(vector<int> arr, int n, int c){
-    sort(arr.begin(), arr.end());
+    sort(arr.begin(), arr.end()); // time complexity = O(nlogn)
     // the maximum possible distance is highest and lowest stall postions
     int ans = arr[n-1] - arr[0];
     for (int i = 1; i < n; i++){
@@ -33,6 +33,9 @@ int minimumDistanceBruteForce(vector<int> arr, int n, int c){
     // else return the maximum distance
     return ans;
 }
+
+// Time complexity = O(nlogn)+O(n×n)=O(nlogn+n^2)=O(n^2)
+// Space complexity = O(1)
 
 int minimumDistance(vector<int> arr, int n, int c){
     sort(arr.begin(), arr.end());
@@ -54,6 +57,10 @@ int minimumDistance(vector<int> arr, int n, int c){
     }
     return ans;
 }
+
+// Time complexity = O(nlogn+nlog(max−min)) 
+// In most cases, log (max-min) ≈ log n, so we approximate the complexity to
+// Space complexity = O(n)
 
 int main(){
     int n = 5;
