@@ -10,7 +10,7 @@ int minTotalSpend(vector<int> steps, int k, int i){
     // base case
     // if frog jump from 0th step to 0th step energy spend = 0
     if (i == 0) return 0;
-    // bacause of k (1 step or 2 steps or 3 steps and so on till k steps)
+    // bacause of k (1 step or 2 steps or 3 steps and so on till k steps).
     // we need to check all possible options
     // 
     int minEnergy = INT_MAX;
