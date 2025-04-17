@@ -1,132 +1,142 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
-// another way of writing code
-int minimumPathRecursionNormal(int i, int j, vector<vector<int>> &grid){
-    // boundary cases return INT_MAX beacuse we are not cross the boundy of grid
-    if (i < 0 || j < 0) return INT_MAX;
-    // base case return grid value
-    if ( i == 0 && j == 0) return grid[i][j];
-    // we need min sum from left and right posibilties
-    int top =  minimumPathRecursionNormal(i-1, j, grid);
-    int left = minimumPathRecursionNormal(i, j-1, grid);
-    // we need min sum from left and right posibilties
-    int res = grid[i][j] + min(top,left);
-    // return the posibility for prev call 
-    return res;
+int maxPathRecursionTabulationOptimisation(vector<vector<int>> &grid, int m, int n){
+    vector<int> prev(n);
+    for(int j = 0; j < n; j++) prev[j] = grid[m-1][j];
+    vector<int> curr(n);
+    
+    for(int i=m-2; i>=0; i--){
+        for(int j=0; j < n; j++){
+            int diagLeft = (j-1 < 0) ? INT_MIN : prev[j-1];
+            int down = prev[j];
+            int diagRight = (j+1 >= n) ? INT_MIN : prev[j+1];
+            
+            curr[j] = grid[i][j] + max({diagLeft, down, diagRight});
+        }
+        prev = curr;
+    }
+    return *max_element(prev.begin(),prev.end());
 }
 
-// time complexity = O(2 ^ (m + n))
-//  since each cell is computed recursively with two possible moves (right and down) for (m) rows and (n) columns.
-// space complexity = O(m + n) 
-// as it depends on the depth of the recursive call stack, which is limited to the sum of rows (m) and columns (n) in the grid.
+/*
+Time Complexity: O(m * n)
+
+The nested loops iterate through each cell in the grid exactly once.
+
+Each cell's value is computed in constant time.
+
+Space Complexity: O(n)
+
+The additional space required for the prev and cur arrays is proportional to the number of columns in the grid.
+*/
 
 
-
-int minimumPathRecursion(int i, int j, vector<vector<int>> &grid){
-    if ( i == 0 && j == 0) return grid[i][j];
-    // before doing recursive call we ensure i > 0 and j > 0 beacuse
-    // if i > 0 -> i - 1 is valid index
-    // if j > 0 -> j - 1 is valid index
-    // if add base case like if (i < 0 || j < 0) return INT_MAX 
-    // which return value of base case INT_MAX value add to grid[i][j] causes overflow so
-    // we check i and j are greater than 0 
-    int top = (i > 0) ? grid[i][j] + minimumPathRecursion(i-1, j, grid) : INT_MAX;
-    int left = (j > 0) ? grid[i][j] + minimumPathRecursion(i, j-1, grid) : INT_MAX;
-    // we need min sum from left and right posibilties
-    int res = min(top,left);
-    // return the posibility for prev call 
-    return res;
+int maxPathRecursionTabulation(vector<vector<int>> &grid, int m, int n){
+    vector<vector<int>> dp(m, vector<int>(n,-1));
+    for(int j=0; j < n; j++) dp[m-1][j] = grid[m-1][j];
+    for(int i = m-2; i >= 0; i--){
+        for(int j = 0; j < n; j++){
+            int diagLeft = (j-1 < 0) ? INT_MIN : dp[i+1][j-1];
+            int down = dp[i+1][j];
+            int diagRight = (j+1 >= n) ? INT_MIN : dp[i+1][j+1];
+            
+            dp[i][j] = grid[i][j] + max({diagLeft, down, diagRight});
+        }
+    }
+    int maxSum = *max_element(dp[0].begin(), dp[0].end());
+    return maxSum;
 }
 
+/*
+Time Complexity: O(m * n)
 
-// time complexity = O(2 ^ (m + n))
-//  since each cell is computed recursively with two possible moves (right and down) for (m) rows and (n) columns.
-// space complexity = O(m + n) 
-// as it depends on the depth of the recursive call stack, which is limited to the sum of rows (m) and columns (n) in the grid.
+The nested loops iterate through each cell in the grid exactly once.
 
+Each cell's value is computed in constant time.
 
-int minimumPathMemorisation(int i, int j, vector<vector<int>> &grid, vector<vector<int>> &dp){
-    if(i == 0 && j == 0) return grid[i][j];
+Space Complexity: O(m * n)
+
+The additional space required for the dp array is proportional to the number of cells in the grid.
+
+*/
+
+int maxPathRecursionMemo(vector<vector<int>> &grid, int i,int j,int m,int n, vector<vector<int>>& dp){
+    if(i >= m || j >= n) return INT_MIN;
+    if (i == m-1) return grid[i][j];
     if (dp[i][j] != -1) return dp[i][j];
     
-    int top = (i > 0) ? grid[i][j] + minimumPathMemorisation(i-1, j, grid, dp) : INT_MAX;
-    int left = (j > 0) ? grid[i][j] + minimumPathMemorisation(i, j-1, grid,dp) : INT_MAX;
+    int diagLeft = maxPathRecursionMemo(grid,i+1, j-1, m,n, dp);
+    int down = maxPathRecursionMemo(grid,i+1,j,m,n, dp);
+    int diagRight = maxPathRecursionMemo(grid,i+1,j+1,m,n,dp);
     
-    dp[i][j] = min(top,left);
+    dp[i][j] = grid[i][j] + max({diagLeft, down, diagRight});
     return dp[i][j];
 }
 
-// time complexity = O(m * n)
-//  because each cell in the m×n grid is computed once, and memoization ensures that previously computed values are reused.
-// space complexity = O(m + n) + O(m * n)
-// where space complexity is O(m+n) for the memoization table (DP table) plus O(mxn) for the recursive call stack.
+/*
+Time Complexity: O(m * n)
 
+The function maxPathRecursionMemo makes recursive calls, and each call involves exploring three possible directions (left diagonal, down, right diagonal) and is called for each cell in the first row in the max_path_sum function.
 
-int minimumPathTabulation(int m, int n, vector<vector<int>> &grid){
-    vector<vector<int>> dp(m, vector<int> (n,0));
+The recursive calls memoized by the dp array reduce redundant computations.
+
+Space Complexity: O(m * n) + O(m)
+
+The space complexity is determined by the dp array, which is a memoization table used to store intermediate results to avoid redundant computations -> O(m * n).
+
+Each recursive call consumes space on the call stack until it reaches the base case. The maximum depth of the recursion is the number of rows (m) since we start from the top and move down -> O(m).
+
+*/
+
+int maxPathRecursion(vector<vector<int>> &grid, int i,int j,int m,int n){
+    if(i >= m || j >= n) return INT_MIN;
+    if (i == m-1) return grid[i][j];
     
-    for (int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-            if (i == 0 && j == 0) {
-                dp[i][j] = grid[i][j];
-            }else{
-                int right = (j > 0) ? grid[i][j] + dp[i][j-1] : INT_MAX;
-                int top = (i > 0) ? grid[i][j] + dp[i-1][j] : INT_MAX;
-                dp[i][j] = min(top, right);
-            }
-        }
-    }
-    return dp[m-1][n-1];
+    int diagLeft = maxPathRecursion(grid,i+1, j-1, m,n);
+    int down = maxPathRecursion(grid,i+1,j,m,n);
+    int diagRight = maxPathRecursion(grid,i+1,j+1,m,n);
+    
+    int res = grid[i][j] + max({diagLeft, down, diagRight});
+    return res;
 }
 
-// time complexity = O(m * n)
-//  because the algorithm iterates through all  m rows and n columns of the grid once to fill the DP table.
-// space complexity = O(m * n)
-//   due to the usage of a 2D DP table of size  m×n to store intermediate values for each cell in the grid.
+// time complexity =O(n * 3^m)
+// The function maxPathRecursion(i, j, grid) makes three recursive calls (left, down, right diagonally) for each cell in the grid. In the worst case, it explores all possible paths through the grid, resulting in a time complexity of 3^m.
 
-int minimumPathTabulationOptimisation(int m, int n, vector<vector<int>> &grid){
-    // this array hold prev row values
-    vector<int> prev(n,0);
-    // this array holds current row values
-    vector<int> curr(n,0);
-    
-    for (int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-            // starting element store in currnt array starting value
-            if (i == 0 && j == 0) {
-                curr[j] = grid[0][0];
-            }else{
-                // current value depends on left value curr[j-1] and prev value prev[j]
-                int right = (j > 0) ? grid[i][j] + curr[j-1]: INT_MAX;
-                int top = (i > 0) ? grid[i][j] + prev[j] : INT_MAX;
-                curr[j] = min(top, right);
-            }
-        }
-        // update prev value to currnt value for next iteration
-        prev = curr;
+// The function maxPathRecursion(m, n, grid) calls maxPathRecursion function for each cell in the first row.
+// space complexity = O(m)
+// The space complexity is determined by the depth of the recursion, which is equal to the number of rows 'm' in the grid.
+
+void maxPath(vector<vector<int>> &grid){
+    int m = grid.size();
+    int n = grid[0].size();
+
+    int maxSum = INT_MIN;
+    for(int j = 0; j < n; j++){
+        maxSum = max(maxSum,maxPathRecursion(grid, 0, j, m, n));
     }
-    // return last value in curr or prev array 
-    return curr[n-1];
-}
+    cout << "using Recursion: " << maxSum << endl;
 
-// time complexity = O(m * n)
-//  due to the nested iteration over the grid.
-// space complexity = O(n) (prev array) + O(n) (curr array) = O(n)
-//  due to the usage of two 1D arrays of size n (prev and curr) to store intermediate values.
+    vector<vector<int>> dp1(m, vector<int>(n,-1));
+    for(int j = 0; j < n; j++){
+        maxSum = max(maxSum,maxPathRecursionMemo(grid, 0, j, m, n, dp1));
+    }
+    cout << "using Memoisation: " << maxSum << endl;
+
+    maxSum = maxPathRecursionTabulation(grid, m, n);
+    cout << "using Tabulation: " << maxSum << endl;
+
+    maxSum = maxPathRecursionTabulationOptimisation(grid, m, n);
+    cout << "using Tabulation Optimisation: " << maxSum << endl;
+}
 
 int main(){
-    int m = 3, n = 3;
-    vector<vector<int>> grid = {{1,2,3},{4,5,6},{7,8,9}}; // output: 21
-    cout << "RecursionNoraml: " << minimumPathRecursionNormal(2,2,grid) << endl;
-    cout <<"Recursion: " << minimumPathRecursion(2,2,grid) << endl;
-    vector<vector<int>> dp(m, vector<int>(n, -1));
-    cout <<"Memorisation: " << minimumPathMemorisation(2,2,grid,dp) << endl;
-
-    cout <<"Tabulation: " << minimumPathTabulation(3,3,grid) << endl;
-    cout <<"Tabulation Optimisation: " << minimumPathTabulationOptimisation(3,3,grid) << endl;
+    vector<vector<int>> grid = {{10,40,50},{30,30,20},{30,20,20}};
+    maxPath(grid);
     return 0;
 }
