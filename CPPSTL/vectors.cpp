@@ -86,6 +86,17 @@ int main() {
         cout << i << " ";
     }
     cout << endl;
+
+    // use of map function to sqare each element in vector
+    vector<int> vec4 = {1,2,3,4,5};
+    transform(vec4.begin(), vec4.end(), vec4.begin(), [](int x){return x*x;});
+    cout << "Squared vec4: ";
+    for (int i : vec4) {
+        cout << i << " ";
+    }
+    cout << endl;
+    
+
     
 
     return 0;
