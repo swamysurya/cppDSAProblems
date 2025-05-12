@@ -59,6 +59,104 @@ bool searchElementInLinedList(Node* head, int target){
     return false;
 }
 
+// delete element in linked list
+
+// delete element at end
+Node* deleteTailElement(Node* head){
+    Node* temp = head;
+    // if there is no linked list
+    if (temp == nullptr) return nullptr;
+    // if only one node is present 
+    if (temp->next == nullptr){
+        delete temp;
+        return nullptr;
+    }
+    // more than one node is presnet iterate it
+
+    while(temp->next->next != nullptr) temp = temp->next;
+    Node* delNode = temp->next;
+    delete delNode;
+    temp->next = nullptr;
+
+    return head;
+}
+
+// time complexcity : O(N);
+// space complexcity: O(1);
+
+// delete head element
+Node* deleteHead(Node* head){
+    if (head == nullptr) return nullptr;
+
+    Node* temp = head;
+    head = head ->next;
+    delete temp;
+    return head;
+}
+
+// time complecity : O(1)
+// space complexcity : O(1)
+
+// delete kth element (index based )
+// means of u delete k = 3 means index 3 value should be deleted 4 the element in the linked list
+
+Node* deleteKthElement(Node* head, int k){
+    // head is empty
+    if (head == nullptr) return nullptr;
+    // it means k = 0 is head element
+    if (k == 0){
+        Node* temp = head;
+        head = head ->next;
+        delete temp;
+        return head;
+    }
+
+    Node* temp = head;
+    int count = 0;
+    while(temp->next != nullptr){
+        if (count == k-1){
+            Node* deletedNode = temp->next;
+            temp ->next = temp ->next->next;
+            delete deletedNode;
+            break;
+        }
+        temp = temp->next;
+        count++;
+    }
+    return head;
+}
+
+// time complexcity: O(N);
+// space complexcity: O(1);
+
+Node* deleteValue(Node* head, int x){
+    // head is empty
+    if (head == nullptr) return nullptr;
+    // it means k = 0 is head element
+    if (x == head->data){
+        Node* temp = head;
+        head = head ->next;
+        delete temp;
+        return head;
+    }
+
+    Node* temp = head;
+    int count = 0;
+    while(temp->next != nullptr){
+        if (x == temp->next->data){
+            Node* deletedNode = temp->next;
+            temp ->next = temp ->next->next;
+            delete deletedNode;
+            break;
+        }
+        temp = temp->next;
+        count++;
+    }
+    return head;
+}
+
+// time complexcity: O(N);
+// space complexcity: O(1);
 
 int main(){
     int arr[] = {1,2,3,4,5};
