@@ -13,6 +13,7 @@ int main() {
     s.push(4);
     s.push(5);
 
+
     // using copy constructor
     stack<int> s1(s);
 
