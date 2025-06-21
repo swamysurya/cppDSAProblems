@@ -1,102 +1,79 @@
-# **Problem Statement: Efficient Array Rotations**
+Sliding Window
 
-## **Problem Description**
+Two Pointers
 
-Given an array of size `n`, perform a series of rotations based on the given values of `x` and `y`:
+Prefix Sum / Cumulative Sum
 
-- `x` represents the number of **right rotations**.
-- `y` represents the number of **left rotations**.
+Binary Search
 
-Your task is to determine the **minimum** number of left rotations needed to bring the array to its final rotated position after applying both `x` right rotations and `y` left rotations. Implement an efficient approach to achieve this in `O(n)` time complexity.
+Hashing (Hash Map / Hash Set)
 
-## **Input Format**
+Greedy
 
-- An integer `n` (size of the array).
-- An array of `n` integers.
-- Two integers `x` (number of right rotations) and `y` (number of left rotations).
+Backtracking
 
-## **Output Format**
+Recursion
 
-- Print the modified array after applying the optimal rotations.
+Divide and Conquer
 
-## **Constraints**
+Dynamic Programming (DP)
 
-- `1 <= n <= 10^5`
-- `1 <= arr[i] <= 10^9`
-- `0 <= x, y <= 10^9`
+Graph Algorithms (BFS, DFS, Dijkstra, etc.)
 
-## **Examples**
+Bit Manipulation
 
-### **Example 1**
+Stack-based Techniques
 
-**Input:**
+Queue / Deque Techniques
 
-```
-6
-7 8 9 10 11 12
-3 2
-```
+Trie (Prefix Tree)
 
-**Output:**
+Heap / Priority Queue
 
-```
-10 11 12 7 8 9
-```
+Union-Find (Disjoint Set Union - DSU)
 
-**Explanation:**
+Monotonic Stack / Queue
 
-- 3 right rotations: `[10, 11, 12, 7, 8, 9]`
-- 2 left rotations: `[10, 11, 12, 7, 8, 9]` (same as above, so only left rotations needed)
+Segment Tree / Binary Indexed Tree (Fenwick Tree)
 
-### **Example 2**
+Topological Sort
 
-**Input:**
+Meet in the Middle
 
-```
-5
-1 2 3 4 5
-2 3
-```
+Line Sweep Algorithm
 
-**Output:**
+Kadane’s Algorithm
 
-```
-4 5 1 2 3
-```
+Floyd’s Cycle Detection (Tortoise and Hare)
 
-**Explanation:**
+Fast & Slow Pointers
 
-- 2 right rotations: `[4, 5, 1, 2, 3]`
-- 3 left rotations: `[4, 5, 1, 2, 3]` (same as above, so only left rotations needed)
+Matrix Traversal Techniques
 
-## Comparison of Functionality
+Number Theory (GCD, LCM, Modulo, etc.)
 
-### lowerAndUpperBounds.cpp
+Modular Arithmetic / Modular Exponentiation
 
-- **Purpose**: Implements functions to find the **lower bound** and **upper bound** of a target value in a sorted array.
-  - **Lower Bound**: The index of the first element that is **greater than or equal to** the target.
-  - **Upper Bound**: The index of the first element that is **greater than** the target.
+Bitmasking
 
-### ceilTheFloor.cpp
+Sliding Window Maximum (Using Deque)
 
-- **Purpose**: Implements functions to find the **ceiling** and **floor** of a target value in a sorted array.
-  - **Ceiling**: The smallest element that is **greater than or equal to** the target.
-  - **Floor**: The largest element that is **less than or equal to** the target.
+Bucket Sort / Counting Sort / Radix Sort
 
-### Key Differences
+Trie + DFS/BFS Combo
 
-1. **Implementation**: Both files use binary search, but they serve different purposes and return different types of results (indices vs. values).
-2. **Return Values**:
-   - Functions in [lowerAndUpperBounds.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/lowerAndUpperBounds.cpp:0:0-0:0) return indices.
-   - Functions in [ceilTheFloor.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/ceilTheFloor.cpp:0:0-0:0) return actual values from the array.
+Recursion with Memoization (Top-down DP)
 
-### Summary
+Tabulation (Bottom-up DP)
 
-While both files utilize binary search techniques and deal with sorted arrays, they focus on different aspects of searching:
+State-space Search
 
-- [lowerAndUpperBounds.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/lowerAndUpperBounds.cpp:0:0-0:0) is concerned with finding indices (bounds).
-- [ceilTheFloor.cpp](cci:7://file:///home/manikanta/Desktop/GIT/cPlusPLus/binarySearch/ceilTheFloor.cpp:0:0-0:0) is focused on finding the actual values (ceiling and floor).
+Subset Generation (Power Set)
 
-Subsequences → Keep order, but elements can be skipped.
-Subarrays → Contiguous portion of the array, order matters.
-Subsets → Any combination of elements, order doesn’t matter.
+Inclusion-Exclusion Principle
+
+Tree DP / Graph DP
+
+Binary Search on Answer
+
+Sparse Table / RMQ

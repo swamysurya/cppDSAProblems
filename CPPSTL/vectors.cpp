@@ -44,6 +44,9 @@ int main() {
     vec1.insert(vec1.begin(), 0); // Insert 0 at the beginning
     vec1.insert(vec1.end(), 4); // Insert 4 at the end
 
+    // insert element at front 
+    vec1.insert(vec1.begin(), 100);
+
     // insert element in array using index
     vec1.insert(vec1.begin() + 2, 100); // Insert 100 at index 2
 

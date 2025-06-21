@@ -2,34 +2,38 @@
 
 using namespace std;
 
-class Node {
-    public:
-        int data;
-        Node* next;
+class Node
+{
+public:
+    int data;
+    Node *next;
 
-        Node(): data(0), next(nullptr) {}
-        Node(int data) : data(data), next(nullptr) {}
-        Node(int data, Node* next) : data(data), next(next) {}
+    Node() : data(0), next(nullptr) {}
+    Node(int data) : data(data), next(nullptr) {}
+    Node(int data, Node *next) : data(data), next(next) {}
 };
 
 // three loop appraoch
-Node* swapNodesThreeLoop(Node* head, int k) {
-    Node* current = head;
+Node *swapNodesThreeLoop(Node *head, int k)
+{
+    Node *current = head;
     int length = 0;
     // Calculate the length of the linked list
-    while (current != NULL) {
+    while (current != NULL)
+    {
         length++;
         current = current->next;
     }
     // If k is greater than the length of the list, return the original list
-    if (k > length) return head;
+    if (k > length)
+        return head;
     // Find the kth node from the beginning
-    Node* firstNode = head;
+    Node *firstNode = head;
     for (int i = 1; i < k; i++)
         firstNode = firstNode->next;
-    
+
     // Find the kth node from the end
-    Node* secondNode = head;
+    Node *secondNode = head;
     for (int i = 1; i < length - k + 1; i++)
         secondNode = secondNode->next;
 
@@ -42,31 +46,37 @@ Node* swapNodesThreeLoop(Node* head, int k) {
 // timee complexcity:O(2N) = O(N);
 // space complexcity: O(1);
 
-void printLinkedList(Node* head){
-    Node* temp = head;
-    while(temp != nullptr){
+void printLinkedList(Node *head)
+{
+    Node *temp = head;
+    while (temp != nullptr)
+    {
         cout << temp->data << " -> ";
         temp = temp->next;
     }
     cout << "nullptr" << endl;
 }
 
-Node* swapNodesTwoPass(Node* head, int k) {
-    Node* front = head;
-    Node* back = head;
-    Node* frontNode;
-    Node* backNode;
+Node *swapNodesTwoPass(Node *head, int k)
+{
+    Node *front = head;
+    Node *back = head;
+    Node *frontNode;
+    Node *backNode;
     // move front pointer to kth node
-    for(int i=1; i < k && front->next != nullptr; ++i){
+    for (int i = 1; i < k && front->next != nullptr; ++i)
+    {
         front = front->next;
     }
     // if front is null means k is greater than length of linked list
-    if(front == nullptr) return head;
+    if (front == nullptr)
+        return head;
     // store front node
     backNode = front;
 
     // move front pointer to end of linked list
-    while(front->next != nullptr){
+    while (front->next != nullptr)
+    {
         front = front->next;
         back = back->next;
     }
@@ -81,24 +91,28 @@ Node* swapNodesTwoPass(Node* head, int k) {
     return head;
 }
 
-Node* swapNodesSinglePass(Node* head, int k) {
-    Node* current = head;
-    Node* firstNode = nullptr;
-    Node* secondNode = nullptr;
+Node *swapNodesSinglePass(Node *head, int k)
+{
+    Node *current = head;
+    Node *firstNode = nullptr;
+    Node *secondNode = nullptr;
     int length = 0; // length of linked list
     // iterate till end of linked list
-    while (current != NULL) {
+    while (current != NULL)
+    {
         // indicates the current position of the node
         length++;
         // second node not null measn we found first node
         // we need move till end of linked list
 
-        if (secondNode != nullptr) {
+        if (secondNode != nullptr)
+        {
             secondNode = secondNode->next;
         }
         // if position is equal to k means we need to store the first node
         // make second node to point to head
-        if (length == k) {
+        if (length == k)
+        {
             firstNode = current;
             secondNode = head;
         }
@@ -113,12 +127,13 @@ Node* swapNodesSinglePass(Node* head, int k) {
     return head;
 }
 
-int main(){
-    Node* head = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5,new Node(6))))));
+int main()
+{
+    Node *head = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, new Node(6))))));
     int k = 2;
 
     // Node* head1 = swapNodesThreeLoop(head, k);
-    Node* head2 = swapNodesSinglePass(head, k);
+    Node *head2 = swapNodesSinglePass(head, k);
     cout << "After swapping nodes at position " << k << " and " << (6 - k + 1) << ":" << endl;
     printLinkedList(head);
 }

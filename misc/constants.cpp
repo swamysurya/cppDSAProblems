@@ -1,7 +1,7 @@
 #include <iostream>
-#include <climits> 
-#include <cfloat>  // Needed for floating-point limits
-#include <cmath>   // Needed for constants like M_PI and M_E
+#include <climits> // needed for integer limits example INT_MAX, INT_MIN and 
+#include <cfloat>  // needed for floating-point limits example FLT_MAX, FLT_MIN
+#include <cmath>   // needed for constants like M_PI and M_E INFINITY and -INFINITY and NAN
 
 using namespace std;
 
@@ -38,6 +38,12 @@ int main() {
     cout << "inf: " << INFINITY << endl;
     // specify -ve inf
     cout << "-inf: " << -INFINITY << endl;
+
+    // store Inf values in varibales
+    double inf = INFINITY;
+    double neginf = -INFINITY;
+    cout << "inf: " << inf << endl;
+    cout << "-inf: " << neginf << endl;
 
 
     // specify nan

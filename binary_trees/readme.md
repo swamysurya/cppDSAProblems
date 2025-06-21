@@ -124,6 +124,11 @@ broadly there are 2 types of traversal
 
 3. Depth first search (DFS)
    there are 3 types of DFS
+
    1. pre order traversal (root -> left -> right)
    2. in order traversal (left -> root -> right)
    3. post order traversal (left -> right -> root)
+
+4. Breadth first search (BFS)
+   it is level order traversal
+   we started from root and visited all nodes level by level
